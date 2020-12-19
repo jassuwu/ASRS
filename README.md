@@ -12,8 +12,11 @@ This program is designed by keeping in mind a Airport's seat reserving staff. It
 Can download data into a .txt to extract passenger records. The seat structure and availability can be represented pictorially.
 Includes a login feature to provide increased security.
 
+
 Username : root
+
 Password : password
+
 
 v1.0 : Contained features that does reservation, cancellation and display passenger records. Major bug fixes.
 
