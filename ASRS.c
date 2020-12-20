@@ -38,14 +38,14 @@ void login()    // User login framework.
         getch();
         if(strcmp(username,user)==0 && strcmp(password,pass)==0)
         {
-            printf("\n\n\n\t\t\t\tLogin Sucessful.");
+            printf("\n\n\n\t\t\t\tLogin Sucessful.\n");
             printf("\n\n\n\t\t\t\tPress any key to continue...");
             getch();
             break;
         }
         else
         {
-            printf("\n\t\t\t\tLogin Unsucessful");
+            printf("\n\t\t\t\tLogin Unsucessful\n\n");
             attempts++;
             getch();
         }
@@ -217,7 +217,7 @@ void cancellation() // To cancel reserved seats.
     else
     {
         seats[index].passNum = 0;
-        printf("Your seat has been cancelled!\n");
+        printf("Your seat has been cancelled and you fee paid has been refunded.\n");
         printf("Thank you, see you next time.\n");
     }
     printf("\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");

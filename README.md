@@ -1,21 +1,22 @@
 # Semester I Package
-# Airplane Seat Reservation System (ASRS)
+## Airplane Seat Reservation System (ASRS)
+
 A really basic Airplane Seat Reservation System with few useful features.
 
 Contributors :
 
-20PW06 - Chandrasehar R.
+>20PW06 - Chandrasehar R.
 
-20PW14 - Karthickpranav S. N.
+>20PW14 - Karthickpranav S. N.
 
 This program is designed by keeping in mind a Airport's seat reserving staff. It can receive, store, and display passenger data. 
 Can download data into a .txt to extract passenger records. The seat structure and availability can be represented pictorially.
 Includes a login feature to provide increased security.
 
 
-Username : root
+Username : `root`
 
-Password : password
+Password : `password`
 
 
 v1.0 : Contained features that does reservation, cancellation and display passenger records. 
