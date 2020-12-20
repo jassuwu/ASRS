@@ -10,7 +10,7 @@ struct customer         // The structure of a customer.
     char fName[50];
     char lName[50];
     int passNum;
-    long long int phnNum;
+    unsigned long long int phnNum;
     int seatNum;
 }seats[15];
 
@@ -123,7 +123,7 @@ void reservationB() //To reserve seats in Business class.
         }
     }
     seats[index].passNum = pNum;
-    int phNum;
+    long long int phNum;
     L4 : printf("Enter contact number (10 digits):");
     scanf("%lld",&phNum);
     if(phNum>999999999 && phNum<10000000000)
@@ -172,7 +172,7 @@ void reservationE() // To reserve seats in Economy class.
         }
     }
     seats[index].passNum = pNum;
-    int phNum;
+    long long int phNum;
     L5 : printf("Enter contact number (10 digits):");
     scanf("%lld",&phNum);
     if(phNum>999999999 && phNum<10000000000)
