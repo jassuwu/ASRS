@@ -19,6 +19,7 @@ void login()    // User login framework.
     int attempts=0,i=0;
     char username[5];
     char password[9];
+    char c = ' ';
     char user[5]="root";
     char pass[9]="password";
     do
@@ -30,8 +31,24 @@ void login()    // User login framework.
         while(i < 8)
         {
             password[i] = getch();
-            printf("*");
-            i++;
+            c = password[i];
+            if(c == 13)
+            {
+                break;
+            }
+            else if(c == 8)
+            {
+                if(i>0)
+                {
+                    printf("\b \b");
+                    i--;
+                }
+            }
+            else
+            {
+                printf("*");
+                i++;
+            }
         }
         password[i]='\0';
         i=0;
