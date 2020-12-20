@@ -16,32 +16,29 @@ struct customer         // The structure of a customer.
 
 void login()    // User login framework.
 {
-    int a=0,i=0;
-    char username[10],c=' ';
-    char password[10],code[10];
-    char user[10]="root";
-    char pass[10]="password";
+    int attempts=0,i=0;
+    char username[5];
+    char password[9];
+    char user[5]="root";
+    char pass[9]="password";
     do
     {
         printf("\n  \xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb  User Login  \xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb  ");
         printf(" \n\n                       Enter userid: ");
         scanf("%s",username);
         printf(" \n\n                       Enter password: ");
-        while(i < 10)
+        while(i < 8)
         {
             password[i] = getch();
-            c = password[i];
-            if(c == 13)
-                break;
-            else
-                printf("*");
+            printf("*");
             i++;
         }
         password[i]='\0';
         i=0;
+        getch();
         if(strcmp(username,user)==0 && strcmp(password,pass)==0)
         {
-            printf("  \n\n\n       Login Sucessful.");
+            printf("\n\n\n\t\t\t\tLogin Sucessful.");
             printf("\n\n\n\t\t\t\tPress any key to continue...");
             getch();
             break;
@@ -49,12 +46,11 @@ void login()    // User login framework.
         else
         {
             printf("\n\t\t\t\tLogin Unsucessful");
-            a++;
+            attempts++;
             getch();
         }
-    }
-    while(a<=2);
-    if (a>2)
+    }while(attempts<3);
+    if (attempts>2)
     {
         printf("\nSorry, you have entered the wrong username and password too many times.");
         getch();
@@ -102,7 +98,7 @@ int seatCountB()    //To count the total no. of seats left in the Business class
 void reservationB() //To reserve seats in Business class.
 {
     int index;
-    for(int i = 0; i< 6; i++)
+    for(int i = 0; i < 6; i++)
     {
         if(seats[i].passNum == 0)
         {
@@ -122,7 +118,7 @@ void reservationB() //To reserve seats in Business class.
     {
         if(pNum == seats[i].passNum)
         {
-            printf("This passport already has a seat booked. Try another passport number.");
+            printf("This passport already has a seat booked. Try another passport number.\n");
             goto L2;
         }
     }
@@ -165,19 +161,19 @@ void reservationE() // To reserve seats in Economy class.
     printf("Enter last name :");
     scanf("%s",seats[index].lName);
     int pNum;
-    L2 :printf("Enter passport number:");
+    L3 :printf("Enter passport number:");
     scanf("%d",&pNum);
     for(int i = 0;i<15;i++)
     {
         if(pNum == seats[i].passNum)
         {
             printf("This passport already has a seat booked. Try another passport number.");
-            goto L2;
+            goto L3;
         }
     }
     seats[index].passNum = pNum;
     int phNum;
-    L4 : printf("Enter contact number (10 digits):");
+    L5 : printf("Enter contact number (10 digits):");
     scanf("%lld",&phNum);
     if(phNum>999999999 && phNum<10000000000)
     {
@@ -186,7 +182,7 @@ void reservationE() // To reserve seats in Economy class.
     else
     {
         printf("Invalid number.\n");
-        goto L4;
+        goto L5;
     }
     system("cls");
     printf("\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
@@ -200,7 +196,7 @@ void reservationE() // To reserve seats in Economy class.
 void cancellation() // To cancel reserved seats.
 {
     int cancelNum;
-    L3 : printf("Enter the passport number to cancel your booking :");
+    printf("Enter the passport number to cancel your booking :");
     scanf("%d",&cancelNum);
     printf("\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
     printf("Your passport number is %d.\n",cancelNum);
@@ -209,7 +205,7 @@ void cancellation() // To cancel reserved seats.
     {
         if(cancelNum == seats[i].passNum)
         {
-            index =  i;
+            index = i;
             break;
         }
     }
@@ -252,29 +248,29 @@ void exportRecord() // To export the Passenger records to a .txt file.
     if(fp==NULL)
     {
         printf("The file was not created.");
+
     }
     else
     {
         printf("The file creation was successful.");
-    }
-    
-    for(int i = 0; i <15; i++)
-    {
-        if(seats[i].passNum != 0)
+        for(int i = 0; i <15; i++)
         {
-            if(i>0 && i<6)
-                fprintf(fp,"The Seat no. %d [Business class] is occupied by...\n",seats[i].seatNum);
-            else
-                fprintf(fp,"The Seat no. %d [Economy class] is occupied by...\n",seats[i].seatNum);
-            fprintf(fp,"\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
-            fprintf(fp,"Name of the passenger:\t\t%s %s\n",seats[i].fName,seats[i].lName);
-            fprintf(fp,"Passport No.:\t\t%d\n",seats[i].passNum);
-            fprintf(fp,"Contact No.:\t\t%lld\n",seats[i].phnNum);
-            fprintf(fp,"\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
+            if(seats[i].passNum != 0)
+            {
+                if(i>0 && i<6)
+                    fprintf(fp,"The Seat no. %d [Business class] is occupied by...\n",seats[i].seatNum);
+                else
+                    fprintf(fp,"The Seat no. %d [Economy class] is occupied by...\n",seats[i].seatNum);
+                    fprintf(fp,"\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
+                    fprintf(fp,"Name of the passenger:\t\t%s %s\n",seats[i].fName,seats[i].lName);
+                    fprintf(fp,"Passport No.:\t\t%d\n",seats[i].passNum);
+                    fprintf(fp,"Contact No.:\t\t%lld\n",seats[i].phnNum);
+                    fprintf(fp,"\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
+            }
         }
+        fclose(fp);
+        printf("The Passenger records were exported successfully.");
     }
-    fclose(fp);
-    printf("The Passenger records were exported successfully.");
 }
 void seatStructure()    // Shows a graphical representation of the availability and structure of seats.
 {
@@ -317,11 +313,11 @@ int main()  // Main function.
             printf("No. of seats available in total is %d.\n ",seatCount());
             printf("No. of seats available in Business class is %d.\n ",seatCountB());
             printf("No. of seats available in Economy class is %d.\n ",seatCountE());
-            L5: printf("Enter 0 for Economy and 1 for Business class seats :");
+            L6: printf("Enter 0 for Economy and 1 for Business class seats :");
             scanf("%d",&suiteOp);
             if(suiteOp == 1)
             {
-                if(seatCountB>0)    
+                if(seatCountB()>0)    
                     reservationB();
                 else
                 {
@@ -331,7 +327,7 @@ int main()  // Main function.
             }
             else if(suiteOp == 0)
             {
-                if(seatCountE>0)    
+                if(seatCountE()>0)    
                     reservationE();
                 else
                 {
@@ -342,7 +338,7 @@ int main()  // Main function.
             else
             {
                 printf("Enter a valid suite.\n");
-                goto L5;
+                goto L6;
             }
             goto L1;
         case 2:
@@ -358,7 +354,9 @@ int main()  // Main function.
             seatStructure();
             goto L1;
         case 6:
+            system("cls");
             printf("Thank you for using ASR services.\n");
+            getch();
             return 0;
         default:
             printf("Invalid choice.\n");
